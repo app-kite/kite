@@ -1,9 +1,13 @@
 import type {NextPage} from 'next'
 import styled from 'styled-components';
+import {Header} from '../features/layout/components/Header';
 
 const Home: NextPage = () => {
   return (
-    <Main>Test</Main>
+    <>
+      <Header />
+      <Main>Test</Main>
+    </>
   )
 }
 
