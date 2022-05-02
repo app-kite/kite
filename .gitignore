@@ -36,3 +36,8 @@ yarn-error.log*
 .idea
 .env
 apps/client/.next
+apps/client/prisma/runtime
+apps/client/prisma/index-browser.js
+apps/client/prisma/index.d.ts
+apps/client/prisma/index.js
+apps/client/prisma/libquery_engine-darwin.dylib.node
