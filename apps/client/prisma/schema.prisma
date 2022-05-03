@@ -19,16 +19,6 @@ model User {
   image           String?
   accounts        Account[]
   sessions        Session[]
-  orgs            Org[]
-}
-
-model Org {
-  id              String      @id @default(uuid())
-  name            String
-  ownerId         String
-  slug            String
-
-  owner           User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
 model Account {
