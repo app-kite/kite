@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2017"
+    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "target": "ES2017",
+    "esModuleInterop": true
   },
   "exclude": [
-    "packages/**/dist/**"
+    "packages/**/dist/**",
+    "node_modules"
   ],
-  "references": [
-    {
-      "path": "./apps/*"
-    },
-    {
-      "path": "./packages/*"
-    }
-  ]
 }

@@ -1,19 +1,17 @@
-import type {NextPage} from 'next'
-import styled from 'styled-components';
+import React from 'react';
+import type {NextPage} from 'next';
 import {Header} from '../features/layout/components/Header';
-import {useState} from 'react';
-import wretch from 'wretch';
+import {Text} from '@kite/ui';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Header />
+      <Header/>
+      <Text>
+        test
+      </Text>
     </>
   )
 }
-
-const Main = styled.main`
-  color: red;
-`;
 
 export default Home
