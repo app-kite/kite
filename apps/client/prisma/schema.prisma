@@ -21,6 +21,12 @@ model User {
   sessions        Session[]
 }
 
+model Org {
+  id              String      @id @default(uuid())
+  name            String?
+  settings        Json?
+}
+
 model Account {
   id                  String  @id @default(uuid())
   userId              String

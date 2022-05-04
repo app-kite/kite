@@ -14,7 +14,7 @@ export default function handler(
   }
 }
 
-async function createOrg(req: NextApiRequest, res: NextApiResponse) {
+  async function createOrg(req: NextApiRequest, res: NextApiResponse) {
   const body: CreateOrgRequestBody = req.body;
   const session = await getSession({req});
 

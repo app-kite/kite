@@ -5,30 +5,9 @@ import {useState} from 'react';
 import wretch from 'wretch';
 
 const Home: NextPage = () => {
-  const [name, setName] = useState('');
-  const [slug, setSlug] = useState('');
-
-  const handleSubmit = (ev: any) => {
-    ev.preventDefault();
-
-    wretch('/api/orgs')
-      .post({name, slug});
-  }
-
   return (
     <>
       <Header />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <input type="text" value={name} onChange={ev => setName(ev.target.value)} />
-        </fieldset>
-        <fieldset>
-          <input type="text" value={slug} onChange={ev => setSlug(ev.target.value)} />
-        </fieldset>
-        <fieldset>
-          <button type="submit">Submit</button>
-        </fieldset>
-      </form>
     </>
   )
 }
