@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 
-export const Text = ({children}) => {
-  return (
-    <span>
-      {children}
-    </span>
-  )
-}
+/**
+ * Component for typography
+ */
+export const Text = ({ children }) => {
+  return <span>{children}</span>;
+};
