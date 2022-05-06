@@ -1,7 +1,10 @@
+import {addDecorator} from "@storybook/react";
 import "../styles/globals.css";
+import {ThemeProvider} from "styled-components";
+import {light} from "@kite/theme/light";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: {argTypesRegex: "^on[A-Z].*"},
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -9,3 +12,7 @@ export const parameters = {
     },
   },
 };
+
+addDecorator((storyFn) => (
+  <ThemeProvider theme={light}>{storyFn()}</ThemeProvider>
+))

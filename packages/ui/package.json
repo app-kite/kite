@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "18.1.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "@kite/theme": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
