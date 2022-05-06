@@ -1,11 +1,19 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 
-import { Button } from "../Button";
+import {Button} from '../Button';
+import {ButtonVariant} from './Button';
 
 export default {
-  title: "ui/Button",
+  title: 'ui/Button',
   component: Button,
+  argTypes: {
+    variant: {
+      defaultValue: ButtonVariant.DEFAULT,
+      options: [ButtonVariant.DEFAULT, ButtonVariant.PRIMARY],
+      control: { type: 'radio' },
+    }
+  }
 } as ComponentMeta<typeof Button>;
 
 const PlaygroundContent: ComponentStory<typeof Button> = (
@@ -17,5 +25,6 @@ const PlaygroundContent: ComponentStory<typeof Button> = (
 export const Default = PlaygroundContent.bind({});
 
 Default.args = {
-  children: "Button",
+  children: 'Button',
+  disabled: false,
 };
