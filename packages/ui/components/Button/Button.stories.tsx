@@ -17,5 +17,5 @@ const PlaygroundContent: ComponentStory<typeof Button> = (
 export const Default = PlaygroundContent.bind({});
 
 Default.args = {
-  children: "Кнопка",
+  children: "Button",
 };
