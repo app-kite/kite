@@ -1,3 +1,4 @@
 export * from './Editor';
 export * from './defaultValue';
-export { Descendant } from 'slate';
+export * from './serialize';
+export {Descendant} from 'slate';

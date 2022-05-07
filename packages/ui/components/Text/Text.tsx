@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 type Props = {
   size: 'sm' | 'md' | 'lg';
-};
+  bold?: boolean;
+}
 
 /**
  * Component for typography
@@ -13,6 +14,7 @@ export const Text = ({ children, ...props }) => {
 };
 
 const Root = styled.span<Props>`
+  font-weight: ${p => p.bold ? 'bold' : 'normal'};
   font-size: ${p => {
     switch (p.size) {
       case 'sm':
