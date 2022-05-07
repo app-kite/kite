@@ -1,3 +1,3 @@
 export * from './Editor';
 export * from './defaultValue';
-export {Descendant} from 'slate';
+export { Descendant } from 'slate';

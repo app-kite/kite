@@ -1,8 +1,8 @@
-import {useSession, signIn, signOut} from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import styled from 'styled-components';
 
 export const Header = () => {
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   if (session) {
     return (
@@ -10,7 +10,7 @@ export const Header = () => {
         Signed in as {session.user?.email} <br />
         <button onClick={() => signOut()}>Sign out</button>
       </Root>
-    )
+    );
   }
 
   return (
@@ -18,9 +18,7 @@ export const Header = () => {
       Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button>
     </Root>
-  )
-}
+  );
+};
 
-const Root = styled.header`
-
-`;
+const Root = styled.header``;

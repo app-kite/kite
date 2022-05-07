@@ -3,15 +3,12 @@ import styled from 'styled-components';
 
 type Props = {
   size: 'sm' | 'md' | 'lg';
-}
+};
 
 /**
  * Component for typography
  */
-export const Text = ({
-  children,
-  ...props
-}) => {
+export const Text = ({ children, ...props }) => {
   return <Root {...props}>{children}</Root>;
 };
 

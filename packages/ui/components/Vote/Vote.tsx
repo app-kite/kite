@@ -1,31 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Text} from '../Text';
+import { Text } from '../Text';
 import ChevronUpIcon from '../../assets/icons/chevron-up.svg';
 
 type Props = {
   value: number;
   onChange(activated: boolean): void;
   isActivated: boolean;
-}
+};
 
-export const Vote = ({
-  value,
-  onChange,
-  isActivated,
-}) => {
-
+export const Vote = ({ value, onChange, isActivated }) => {
   const handleClick = () => {
-    onChange(!isActivated)
-  }
+    onChange(!isActivated);
+  };
 
   return (
     <Root onClick={handleClick} isActivated={isActivated}>
       <ChevronUpIcon />
-      <Text size='sm'>{value}</Text>
+      <Text size="sm">{value}</Text>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: inline-flex;
@@ -35,9 +30,9 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: #EDEDED;
+  background-color: #ededed;
   font-weight: bold;
   cursor: pointer;
-  color: ${p => p.isActivated ? p.theme.primaryColor : p.theme.textColor};
+  color: ${p => (p.isActivated ? p.theme.primaryColor : p.theme.textColor)};
   user-select: none;
 `;

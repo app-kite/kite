@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export enum ButtonVariant {
   DEFAULT = 'default',
@@ -7,12 +7,13 @@ export enum ButtonVariant {
 }
 
 type ButtonProps = {
-  variant: ButtonVariant
+  variant: ButtonVariant;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FunctionComponent<ButtonProps> = ({ children, ...rest }) => (
-  <Root {...rest}>{children}</Root>
-);
+export const Button: React.FunctionComponent<ButtonProps> = ({
+  children,
+  ...rest
+}) => <Root {...rest}>{children}</Root>;
 
 const Root = styled.button<ButtonProps>`
   background: ${p => {
@@ -23,7 +24,7 @@ const Root = styled.button<ButtonProps>`
         return 'linear-gradient(180deg, #7DB1FF 0%, #4E90F3 100%)';
     }
   }};
-  border: 1px solid #D8D8D8;
+  border: 1px solid #d8d8d8;
   border-radius: 4px;
   padding: 4px 34px;
   cursor: pointer;
@@ -38,7 +39,7 @@ const Root = styled.button<ButtonProps>`
         return p.theme.textColor;
     }
   }};
-  
+
   &:hover {
     background: ${p => {
       switch (p.variant) {
@@ -47,9 +48,9 @@ const Root = styled.button<ButtonProps>`
         case ButtonVariant.PRIMARY:
           return 'linear-gradient(180deg, #779ED9 0%, #4E7BBE 100%)';
       }
-    }}
+    }};
   }
-  
+
   &:active {
     background: ${p => {
       switch (p.variant) {
@@ -60,7 +61,7 @@ const Root = styled.button<ButtonProps>`
       }
     }};
   }
-  
+
   &:disabled {
     background: ${p => {
       switch (p.variant) {

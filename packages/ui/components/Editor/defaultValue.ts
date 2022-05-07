@@ -1,4 +1,6 @@
-export const defaultValue = [{
-  type: 'paragraph',
-  children: [{ text: '' }],
-}];
+export const defaultValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: '' }],
+  },
+];

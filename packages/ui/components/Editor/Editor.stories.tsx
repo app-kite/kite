@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import React, { useState } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {Editor} from './Editor';
-import {defaultValue} from './defaultValue';
+import { Editor } from './Editor';
+import { defaultValue } from './defaultValue';
 
 export default {
   title: 'ui/Editor',
@@ -12,9 +12,7 @@ export default {
 const PlaygroundContent: ComponentStory<typeof Editor> = () => {
   const [value, setValue] = useState(defaultValue);
 
-  return (
-    <Editor value={value} onChange={setValue} />
-  )
-}
+  return <Editor value={value} onChange={setValue} />;
+};
 
 export const Default = PlaygroundContent.bind({});

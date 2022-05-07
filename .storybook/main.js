@@ -1,16 +1,18 @@
 module.exports = {
   stories: [
-    "../packages/ui/components/**/*.stories.@(js|jsx|ts|tsx)",
-    "../apps/client/features/**/*.stories.@(js|jsx|ts|tsx)",
+    '../packages/ui/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../apps/client/features/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
   ],
-  framework: "@storybook/react",
+  framework: '@storybook/react',
   webpackFinal: config => {
-    const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
+    const fileLoaderRule = config.module.rules.find(
+      rule => rule.test && rule.test.test('.svg'),
+    );
     fileLoaderRule.exclude = /\.svg$/;
 
     config.module.rules.push({
@@ -20,5 +22,5 @@ module.exports = {
     });
 
     return config;
-  }
+  },
 };
