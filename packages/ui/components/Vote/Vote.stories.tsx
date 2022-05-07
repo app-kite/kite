@@ -19,8 +19,8 @@ const PlaygroundContent: ComponentStory<typeof Vote> = args => {
   return (
     <Vote
       value={isActivated ? value + 1 : value}
-      onChange={handleClick}
-      isActivated={isActivated}
+      onVote={handleClick}
+      hasVoted={isActivated}
     />
   );
 };
