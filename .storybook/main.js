@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   stories: [
     '../packages/ui/components/**/*.stories.@(js|jsx|ts|tsx)',
@@ -20,6 +22,8 @@ module.exports = {
       enforce: 'pre',
       loader: require.resolve('react-svg-loader'),
     });
+
+    config.resolve.alias['styled-components'] = path.resolve('./node_modules/styled-components')
 
     return config;
   },

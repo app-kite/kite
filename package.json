@@ -13,8 +13,9 @@
     "babel-loader": "^8.2.5"
   },
   "dependencies": {
+    "@kite/theme": "workspace:*",
     "@kite/ui": "workspace:*",
-    "@kite/theme": "workspace:*"
+    "styled-components": "^5.3.5"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
