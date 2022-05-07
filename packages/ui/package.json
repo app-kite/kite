@@ -12,9 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@kite/theme": "workspace:*",
     "react": "18.1.0",
-    "styled-components": "^5.3.5",
-    "@kite/theme": "workspace:*"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -24,6 +24,7 @@
     "@storybook/addon-links": "^6.4.22",
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
-    "babel-loader": "^8.2.5"
+    "babel-loader": "^8.2.5",
+    "react-svg-loader": "^3.0.3"
   }
 }
