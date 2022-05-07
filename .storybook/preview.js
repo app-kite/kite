@@ -1,5 +1,4 @@
 import {addDecorator} from "@storybook/react";
-import "../styles/globals.css";
 import {ThemeProvider} from "styled-components";
 import {light} from "@kite/theme/light";
 
