@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 
 import {Modal} from './Modal';
+import {ModalProvider, useModal} from './ModalProvider';
 
 export default {
   title: 'ui/Modal',
@@ -16,15 +17,30 @@ const PlaygroundContent: ComponentStory<typeof Modal> = (args) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <>
-      <button onClick={handleOpen}>Open</button>
-      <Modal {...args} isOpen={isOpen} onClose={handleClose}>
+    <ModalProvider>
+      <ModalUsage />
+    </ModalProvider>
+  );
+}
+
+const ModalUsage = () => {
+  const {
+    open,
+  } = useModal();
+
+  const handleOpen = () => {
+    open(
+      <>
         <Modal.Header>Header</Modal.Header>
         <Modal.Content>Content</Modal.Content>
         <Modal.Footer>Footer</Modal.Footer>
-      </Modal>
-    </>
-  );
+      </>
+    )
+  }
+
+  return (
+    <button onClick={handleOpen}>Open</button>
+  )
 }
 
 export const Default = PlaygroundContent.bind({});

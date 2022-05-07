@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "Node",
     "target": "ES2017",
@@ -10,5 +13,5 @@
   "exclude": [
     "packages/**/dist/**",
     "node_modules"
-  ],
+  ]
 }
