@@ -5,17 +5,17 @@ import ChevronUpIcon from '../../assets/icons/chevron-up.svg';
 
 type Props = {
   value: number;
-  onChange(activated: boolean): void;
-  isActivated: boolean;
+  onVote(hasVoted: boolean): void;
+  hasVoted: boolean;
 };
 
-export const Vote = ({ value, onChange, isActivated }) => {
+export const Vote = ({ value, onVote, hasVoted }: Props) => {
   const handleClick = () => {
-    onChange(!isActivated);
+    onVote(!hasVoted);
   };
 
   return (
-    <Root onClick={handleClick} isActivated={isActivated}>
+    <Root onClick={handleClick} isActivated={hasVoted}>
       <ChevronUpIcon />
       <Text size="sm">{value}</Text>
     </Root>
@@ -26,8 +26,8 @@ const Root = styled.div`
   display: inline-flex;
   flex-direction: column;
   width: 38px;
-  height: 58px;
-  justify-content: center;
+  height: 48px;
+  justify-content: start;
   align-items: center;
   border-radius: 4px;
   background-color: #ededed;
@@ -35,4 +35,5 @@ const Root = styled.div`
   cursor: pointer;
   color: ${p => (p.isActivated ? p.theme.primaryColor : p.theme.textColor)};
   user-select: none;
+  ${p => console.log(p.theme)};
 `;

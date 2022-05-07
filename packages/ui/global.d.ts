@@ -6,6 +6,7 @@ type CustomElement = { type: 'paragraph'; children: CustomText[] };
 type CustomText = { text: string };
 
 declare module '*.svg';
+
 declare module 'slate' {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor & HistoryEditor;
