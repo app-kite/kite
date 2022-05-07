@@ -14,6 +14,7 @@
   "dependencies": {
     "@kite/theme": "workspace:*",
     "react": "18.1.0",
+    "react-spring": "^9.4.5",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
