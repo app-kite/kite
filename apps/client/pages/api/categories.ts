@@ -1,10 +1,7 @@
-import type {NextApiRequest, NextApiResponse} from 'next';
-import {prisma} from '../../services/db';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../services/db';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       return getCategories(req, res);

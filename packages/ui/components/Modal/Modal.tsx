@@ -1,47 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
-import {config, useTransition, animated} from 'react-spring';
+import { config, useTransition, animated } from 'react-spring';
 import CloseIcon from '../../assets/icons/close.svg';
 
 type Props = {
   isOpen?: boolean;
   onClose(): void;
   children?: React.ReactNode;
-}
+};
 
-export const Modal = ({
-  isOpen,
-  onClose,
-  children,
-}: Props) => {
-
+export const Modal = ({ isOpen, onClose, children }: Props) => {
   const transition = useTransition(isOpen, {
-    from: {opacity: 0, transform: 'translateY(15px)', background: 'rgba(0, 0, 0, 0)'},
-    enter: {opacity: 1, transform: 'translateY(0px)', background: 'rgba(0, 0, 0, 0.15)'},
-    leave: {opacity: 0, transform: 'translateY(15px)', background: 'rgba(0, 0, 0, 0)'},
+    from: {
+      opacity: 0,
+      transform: 'translateY(15px)',
+      background: 'rgba(0, 0, 0, 0)',
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translateY(0px)',
+      background: 'rgba(0, 0, 0, 0.15)',
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translateY(15px)',
+      background: 'rgba(0, 0, 0, 0)',
+    },
     config: config.stiff,
   });
-
 
   return transition((style, isOpen) => {
     return (
       isOpen && (
         <>
-          <AnimatedBackdrop style={{backgroundColor: style.background}}/>
+          <AnimatedBackdrop style={{ backgroundColor: style.background }} />
           <Root>
-            <AnimatedWindow style={{
-              opacity: style.opacity,
-              transform: style.transform
-            }}>
-              <CloseButton onClick={onClose}/>
+            <AnimatedWindow
+              style={{
+                opacity: style.opacity,
+                transform: style.transform,
+              }}
+            >
+              <CloseButton onClick={onClose} />
               {children}
             </AnimatedWindow>
           </Root>
         </>
       )
-    )
-  })
-}
+    );
+  });
+};
 
 const Root = styled.div`
   position: fixed;
@@ -63,7 +71,7 @@ const AnimatedBackdrop = animated(Backdrop);
 const Window = styled.div`
   position: relative;
   width: 546px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid rgba(61, 61, 61, 0.5);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;

@@ -1,0 +1,3 @@
+packages/**/dist
+apps/**/.next
+**/node_modules

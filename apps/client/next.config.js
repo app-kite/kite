@@ -1,6 +1,4 @@
-const withTM = require('next-transpile-modules')([
-  '@kite/ui',
-]);
+const withTM = require('next-transpile-modules')(['@kite/ui']);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,7 +6,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  webpack: (config) => {
+  webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
       enforce: 'pre',
@@ -16,7 +14,7 @@ const nextConfig = {
     });
 
     return config;
-  }
-}
+  },
+};
 
 module.exports = withTM(nextConfig);

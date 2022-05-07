@@ -6,8 +6,8 @@ export const Sidebar = () => {
     <Root>
       <a>Main</a>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.aside`
   flex: 0 0 150px;

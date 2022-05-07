@@ -7,4 +7,4 @@ export enum AppTheme {
 export type Theme = {
   primaryColor: string;
   textColor: string;
-}
+};

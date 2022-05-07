@@ -1,32 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Controller, useForm} from 'react-hook-form';
-import {Button, ButtonVariant, defaultValue, Descendant, Editor, Modal, Text} from '@kite/ui';
-import {Category} from '../../../categories/type';
-import {CreatePostPayload} from '../../api';
-import {useCreatePost} from '../../hooks/useCreatePost';
+import { Controller, useForm } from 'react-hook-form';
+import {
+  Button,
+  ButtonVariant,
+  defaultValue,
+  Descendant,
+  Editor,
+  Modal,
+  Text,
+} from '@kite/ui';
+import { Category } from '../../../categories/type';
+import { CreatePostPayload } from '../../api';
+import { useCreatePost } from '../../hooks/useCreatePost';
 
 type FormValues = CreatePostPayload;
 
 type Props = {
   categories: Category[];
-}
+};
 
-export const SubmitPostForm = ({
-  categories,
-}: Props) => {
+export const SubmitPostForm = ({ categories }: Props) => {
   const createPostMutation = useCreatePost();
 
   const form = useForm<FormValues>({
     defaultValues: {
       title: '',
       text: defaultValue,
-    }
+    },
   }) as any; // https://github.com/react-hook-form/react-hook-form/issues/4055
 
   const onSubmit = (values: FormValues) => {
     createPostMutation.mutateAsync(values);
-  }
+  };
 
   return (
     <>
@@ -39,19 +45,25 @@ export const SubmitPostForm = ({
           </Fieldset>
           <Fieldset>
             <Text size="lg">Text</Text>
-            <Controller name="text" control={form.control} render={(props) => (
-              <Editor value={props.field.value} onChange={props.field.onChange} />
-            )}/>
-
+            <Controller
+              name="text"
+              control={form.control}
+              render={props => (
+                <Editor
+                  value={props.field.value}
+                  onChange={props.field.onChange}
+                />
+              )}
+            />
           </Fieldset>
           <Footer>
             <div>
               <select {...form.register('categoryId')}>
-                {
-                  categories.map(category => (
-                    <option key={category.id} value={category.id}>{category.name}</option>
-                  ))
-                }
+                {categories.map(category => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -64,8 +76,8 @@ export const SubmitPostForm = ({
         </Content>
       </form>
     </>
-  )
-}
+  );
+};
 
 const Content = styled(Modal.Content)`
   display: flex;
@@ -82,5 +94,5 @@ const Fieldset = styled.fieldset`
 
 const Footer = styled(Modal.Footer)`
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-between; ;
 `;

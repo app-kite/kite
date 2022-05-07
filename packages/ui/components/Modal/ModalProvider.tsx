@@ -1,15 +1,22 @@
-import React, {createContext, useContext, useState, useMemo, useCallback, useRef} from 'react';
-import {Modal} from './Modal';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+} from 'react';
+import { Modal } from './Modal';
 
 const ModalContext = createContext(undefined);
 
 type Props = {
   children: React.ReactNode;
-}
+};
 
-export const ModalProvider = ({children}: Props) => {
+export const ModalProvider = ({ children }: Props) => {
   const [isOpen, setOpen] = useState(false);
-  const contentRef = useRef<React.ReactNode>(null)
+  const contentRef = useRef<React.ReactNode>(null);
 
   const open = useCallback((content: React.ReactNode) => {
     contentRef.current = content;
@@ -20,11 +27,14 @@ export const ModalProvider = ({children}: Props) => {
     setOpen(false);
   }, []);
 
-  const value = useMemo(() => ({
-    isOpen,
-    close,
-    open,
-  }), [close]);
+  const value = useMemo(
+    () => ({
+      isOpen,
+      close,
+      open,
+    }),
+    [close],
+  );
 
   return (
     <ModalContext.Provider value={value}>
@@ -33,8 +43,8 @@ export const ModalProvider = ({children}: Props) => {
       </Modal>
       {children}
     </ModalContext.Provider>
-  )
-}
+  );
+};
 
 export const useModal = () => {
   const context = useContext(ModalContext);
@@ -44,4 +54,4 @@ export const useModal = () => {
   }
 
   return context;
-}
+};

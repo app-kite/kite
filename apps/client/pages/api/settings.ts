@@ -1,10 +1,7 @@
-import type {NextApiRequest, NextApiResponse} from 'next';
-import {prisma} from '../../services/db';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../services/db';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       return getSettings(req, res);
@@ -20,7 +17,7 @@ async function getSettings(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function updateSettings(req: NextApiRequest, res: NextApiResponse) {
-  const {name} = req.body;
+  const { name } = req.body;
 
   const result = await prisma.org.upsert({
     create: {
@@ -31,8 +28,8 @@ async function updateSettings(req: NextApiRequest, res: NextApiResponse) {
       name,
     },
     where: {
-      id: 'main'
-    }
+      id: 'main',
+    },
   });
 
   res.status(200).json(result);

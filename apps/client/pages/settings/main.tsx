@@ -1,14 +1,14 @@
-import {SettingsLayout} from '../../features/settings/components/SettingsLayout';
+import { SettingsLayout } from '../../features/settings/components/SettingsLayout';
 import styled from 'styled-components';
-import {useForm} from 'react-hook-form';
-import {useSettings} from '../../features/settings/hooks/useSettings';
-import {useUpdateSettings} from '../../features/settings/hooks/useUpdateSettings';
-import {dehydrate, QueryClient} from 'react-query';
-import {getSettings} from '../../features/settings/api';
+import { useForm } from 'react-hook-form';
+import { useSettings } from '../../features/settings/hooks/useSettings';
+import { useUpdateSettings } from '../../features/settings/hooks/useUpdateSettings';
+import { dehydrate, QueryClient } from 'react-query';
+import { getSettings } from '../../features/settings/api';
 
 type FormData = {
   name: string;
-}
+};
 
 const SettingsMain = () => {
   const { data } = useSettings();
@@ -18,13 +18,13 @@ const SettingsMain = () => {
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: data?.name
-    }
+      name: data?.name,
+    },
   });
 
   const onSubmit = (data: FormData) => {
     updateSettingsMutation.mutateAsync(data);
-  }
+  };
 
   return (
     <SettingsLayout>
@@ -41,7 +41,7 @@ const SettingsMain = () => {
       </form>
     </SettingsLayout>
   );
-}
+};
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -50,9 +50,9 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient)
-    }
-  }
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 }
 
 const Fieldset = styled.fieldset`
