@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text} from 'slate';
-import {Paragraph} from './components';
+import { Text } from 'slate';
+import { Paragraph } from './components';
 
 export const serialize = node => {
   if (Text.isText(node)) {
@@ -15,4 +15,4 @@ export const serialize = node => {
     default:
       return children;
   }
-}
+};

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {createEditor, Descendant} from 'slate';
-import {Editable, RenderElementProps, Slate, withReact} from 'slate-react';
-import {withHistory} from 'slate-history';
-import {Paragraph} from './components';
+import { createEditor, Descendant } from 'slate';
+import { Editable, RenderElementProps, Slate, withReact } from 'slate-react';
+import { withHistory } from 'slate-history';
+import { Paragraph } from './components';
 
 type Props = {
   value: Descendant[];
@@ -16,19 +16,19 @@ export const renderElement = (props: RenderElementProps) => {
       return <Paragraph {...props.attributes}>{props.children}</Paragraph>;
     }
   }
-}
+};
 
-export const Editor = ({value, onChange}: Props) => {
+export const Editor = ({ value, onChange }: Props) => {
   const [editor] = useState(() => withReact(withHistory(createEditor())));
 
   return (
     <>
       <Slate editor={editor} value={value} onChange={onChange}>
-        <SlateEditable renderElement={renderElement}/>
+        <SlateEditable renderElement={renderElement} />
       </Slate>
     </>
-  )
-}
+  );
+};
 
 const SlateEditable = styled(Editable)`
   border: 1px solid rgba(0, 0, 0, 0.2);

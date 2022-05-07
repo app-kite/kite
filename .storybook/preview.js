@@ -1,7 +1,7 @@
 import React from 'react';
-import {addDecorator} from "@storybook/react";
-import {ThemeProvider} from "styled-components";
-import {light} from "@kite/theme/light";
+import { addDecorator } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
+import { light } from '@kite/theme/light';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
