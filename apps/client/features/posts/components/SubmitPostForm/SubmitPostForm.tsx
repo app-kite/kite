@@ -31,7 +31,10 @@ export const SubmitPostForm = ({ categories }: Props) => {
   }) as any; // https://github.com/react-hook-form/react-hook-form/issues/4055
 
   const onSubmit = (values: FormValues) => {
-    createPostMutation.mutateAsync(values);
+    createPostMutation.mutateAsync({
+      ...values,
+      categoryId: Number(values.categoryId)
+    });
   };
 
   return (

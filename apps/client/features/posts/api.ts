@@ -5,7 +5,7 @@ import { Post } from './types';
 export type CreatePostPayload = {
   title: string;
   text: Descendant[];
-  categoryId: string;
+  categoryId: number;
 };
 
 export const createPost = (payload: CreatePostPayload) => {
