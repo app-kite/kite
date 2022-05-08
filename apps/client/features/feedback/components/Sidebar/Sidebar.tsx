@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Text } from '../../../../../../packages/ui';
+import { Button, ButtonVariant, Text } from '@kite/ui';
 import { Category } from '../../../categories/type';
 
 type Props = {
@@ -18,6 +18,9 @@ export const Sidebar = ({ categories = defaultCategories }: Props) => {
 
   return (
     <Root>
+      <Header>
+        <Button variant={ButtonVariant.DEFAULT}>Submit a post</Button>
+      </Header>
       <Subheader size="md">Filters</Subheader>
       <List>
         <ListItem>
@@ -36,6 +39,10 @@ export const Sidebar = ({ categories = defaultCategories }: Props) => {
 };
 
 const Root = styled.aside``;
+
+const Header = styled.header`
+  padding: 0 0 10px;
+`;
 
 const Subheader = styled(Text).attrs({ size: 'md' })`
   text-transform: uppercase;
@@ -56,6 +63,8 @@ const ListItem = styled.li`
 `;
 
 const Label = styled(Text).attrs({ size: 'sm' })`
+  display: inline-flex;
+  align-items: center;
   padding: 0 5px;
   background-color: #eee;
   border-radius: 4px;
