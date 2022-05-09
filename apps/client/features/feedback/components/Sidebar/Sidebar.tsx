@@ -1,25 +1,36 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Button, ButtonVariant, Text } from '@kite/ui';
+import { Button, ButtonVariant, Text, useModal } from '@kite/ui';
+import { SubmitPostForm } from '../../../../features/posts/components/SubmitPostForm';
 import { Category } from '../../../categories/type';
+import { useCategories } from '../../../categories/hooks/getCategories';
 
 type Props = {
-  categories?: Category[];
+  categoriesList?: Category[];
 };
 
 const defaultCategories: Category[] = [];
 
-export const Sidebar = ({ categories = defaultCategories }: Props) => {
+export const Sidebar = ({ categoriesList = defaultCategories }: Props) => {
   const totalPosts = useMemo(() => {
-    return categories.reduce((total, category) => {
+    return categoriesList.reduce((total, category) => {
       return total + category.posts;
     }, 0);
-  }, [categories]);
+  }, [categoriesList]);
+
+  const { open } = useModal();
+  const { data: categories } = useCategories();
+
+  const handleOpen = () => {
+    open(<SubmitPostForm categories={categories || []} />);
+  };
 
   return (
     <Root>
       <Header>
-        <Button variant={ButtonVariant.DEFAULT}>Submit a post</Button>
+        <Button onClick={handleOpen} variant={ButtonVariant.DEFAULT}>
+          Submit a post
+        </Button>
       </Header>
       <Subheader size="md">Filters</Subheader>
       <List>
@@ -27,7 +38,7 @@ export const Sidebar = ({ categories = defaultCategories }: Props) => {
           <Text size="md">All categories</Text>
           <Label>{totalPosts}</Label>
         </ListItem>
-        {categories.map(category => (
+        {categoriesList.map(category => (
           <ListItem key={category.id}>
             <Text size="md">{category.name}</Text>
             <Label>{category.posts}</Label>
