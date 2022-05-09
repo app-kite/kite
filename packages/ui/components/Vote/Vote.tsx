@@ -35,5 +35,4 @@ const Root = styled.div`
   cursor: pointer;
   color: ${p => (p.isActivated ? p.theme.primaryColor : p.theme.textColor)};
   user-select: none;
-  ${p => console.log(p.theme)};
 `;
