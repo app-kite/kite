@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NextPage } from 'next';
-import { Header } from '../features/layout/components/Header';
-import { Button, ButtonVariant, useModal } from '@kite/ui';
+import { Layout } from '../features/layout/components/Layout';
 import { SubmitPostForm } from '../features/posts/components/SubmitPostForm';
+import { Sidebar } from '../features/feedback/components/Sidebar';
 import { useCategories } from '../features/categories/hooks/getCategories';
+import { ListPosts } from '../features/posts/components/ListPosts';
 
 const Home: NextPage = () => {
-  const { open } = useModal();
   const { data: categories } = useCategories();
+  const [isActivated, setActivated] = useState(false);
 
-  const handleOpen = () => {
-    open(<SubmitPostForm categories={categories || []} />);
+  const handleClick = (isActivated: boolean) => {
+    setActivated(isActivated);
   };
 
   return (
-    <>
-      <Header />
-      <Button variant={ButtonVariant.PRIMARY} onClick={handleOpen}>
-        Submit a post
-      </Button>
-    </>
+    <Layout
+      leftContent={
+        <Sidebar
+          categoriesList={[
+            { id: '1', name: 'Feature Request', posts: 103 },
+            { id: '2', name: 'Bug Report', posts: 71 },
+          ]}
+        />
+      }
+    >
+      <ListPosts />
+    </Layout>
   );
 };
 
