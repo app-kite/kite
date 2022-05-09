@@ -14,8 +14,6 @@ const SettingsMain = () => {
   const { data } = useSettings();
   const updateSettingsMutation = useUpdateSettings();
 
-  console.log(data);
-
   const form = useForm<FormData>({
     defaultValues: {
       name: data?.name,

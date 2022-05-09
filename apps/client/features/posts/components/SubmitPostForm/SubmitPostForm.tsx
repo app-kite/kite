@@ -33,7 +33,7 @@ export const SubmitPostForm = ({ categories }: Props) => {
   const onSubmit = (values: FormValues) => {
     createPostMutation.mutateAsync({
       ...values,
-      categoryId: Number(values.categoryId)
+      categoryId: Number(values.categoryId),
     });
   };
 

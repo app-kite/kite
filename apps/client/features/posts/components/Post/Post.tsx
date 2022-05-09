@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import {Descendant, serialize, Text, Vote} from '@kite/ui';
-import {Category} from '../../../categories/type';
+import { Descendant, serialize, Text, Vote } from '@kite/ui';
+import { Category } from '../../../categories/type';
 
 type Props = {
   title: string;
@@ -30,9 +30,11 @@ export const Post = ({
 
   return (
     <Root>
-      <Vote value={votes} onChange={onVote} isActivated={hasVoted}/>
+      <Vote value={votes} onChange={onVote} isActivated={hasVoted} />
       <Body>
-        <Text size="md" bold>{title}</Text>
+        <Text size="md" bold>
+          {title}
+        </Text>
         <Text size="md">{serializedText}</Text>
         <Footer>
           <Tag>
@@ -47,6 +49,7 @@ export const Post = ({
 const Root = styled.article`
   display: flex;
   gap: 10px;
+  margin-bottom: 40px;
 `;
 
 const Body = styled.div`
