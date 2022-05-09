@@ -2,6 +2,13 @@ import { Descendant } from '@kite/ui';
 import { api } from '../../services/api';
 import { Post } from './types';
 
+export type ListPostPayload = {
+  nextId: number;
+  text: Descendant[];
+  categoryId: number;
+  posts: Post[];
+} & Post;
+
 export type CreatePostPayload = {
   title: string;
   text: Descendant[];
@@ -10,4 +17,8 @@ export type CreatePostPayload = {
 
 export const createPost = (payload: CreatePostPayload) => {
   return api.url('/api/posts').post(payload).json<Post>();
+};
+
+export const listPosts = (cursor: number) => {
+  return api.url(`/api/posts?cursor=${cursor}`).get().json<ListPostPayload>();
 };
