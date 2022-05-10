@@ -7,18 +7,47 @@ on:
     branches:
       - main
 jobs:
-  build:
+  notify:
     name: Notify PR
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message on PR
+      - name: PR Opened
+        if: github.event.action == 'opened'
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            **${{ github.actor }} created a PR:**
+            **${{ github.actor }} opened a PR:**
+            ${{ github.event.pull_request.title }}
+
+            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+
+      - name: PR Reopened
+        if: github.event.action == 'reopened'
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            **${{ github.event.sender.login }} reopened a PR:**
+            ${{ github.event.pull_request.title }}
+
+            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+
+
+
+      - name: PR Merged
+        if: github.event.action == 'closed' && github.event.pull_request.merged
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            **${{ github.event.sender.login }} merged a PR:**
             ${{ github.event.pull_request.title }}
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
