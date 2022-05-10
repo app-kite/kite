@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            **${{ github.actor }} opened a PR:**
+            *${{ github.actor }} opened a PR:*
             ${{ github.event.pull_request.title }}
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            **${{ github.event.sender.login }} reopened a PR:**
+            *${{ github.event.sender.login }} reopened a PR:*
             ${{ github.event.pull_request.title }}
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
@@ -47,7 +47,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            **${{ github.event.sender.login }} merged a PR:**
+            *${{ github.event.sender.login }} merged a PR:*
             ${{ github.event.pull_request.title }}
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
