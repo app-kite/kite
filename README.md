@@ -1,6 +1,6 @@
 # Getting started
 
-## 1. Installing dependencies
+## 1. Installing dependencies.
 
 We're using [pnpm](https://pnpm.io/) as a package manager so install it first:
 
