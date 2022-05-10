@@ -1,6 +1,9 @@
 name: telegram message on Pull Request
 on:
   pull_request:
+    types:
+      - opened
+      - reopened
     branches:
       - main
 jobs:
@@ -13,5 +16,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            ${{ github.actor }} created PR.
+            **${{ github.actor }} created a PR:**
+            ${{ github.event.pull_request.title }}
+
+            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+
+
