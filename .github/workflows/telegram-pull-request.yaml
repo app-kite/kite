@@ -4,6 +4,7 @@ on:
     types:
       - opened
       - reopened
+      - closed
     branches:
       - main
 jobs:
