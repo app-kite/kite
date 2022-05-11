@@ -18,9 +18,7 @@ export const ListPosts = () => {
     },
   );
 
-  const ref = useRef<HTMLDivElement>(null);
-
-  const isIntersecting = useIntersection(ref);
+  const [isIntersecting, ref] = useIntersection();
 
   useEffect(() => {
     if (isIntersecting && hasNextPage) {
@@ -38,10 +36,7 @@ export const ListPosts = () => {
               <Post
                 title={post.title}
                 text={post.text}
-                category={{
-                  id: post.category.id,
-                  name: post.category.name,
-                }}
+                category={post.category}
                 votes={381}
                 key={post.id}
               />
