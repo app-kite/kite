@@ -5,21 +5,15 @@ import { SubmitPostForm } from '../../../../features/posts/components/SubmitPost
 import { Category } from '../../../categories/type';
 import { useCategories } from '../../../categories/hooks/getCategories';
 
-type Props = {
-  categoriesList?: Category[];
-};
-
-const defaultCategories: Category[] = [];
-
-export const Sidebar = ({ categoriesList = defaultCategories }: Props) => {
-  const totalPosts = useMemo(() => {
-    return categoriesList.reduce((total, category) => {
-      return total + category.posts;
-    }, 0);
-  }, [categoriesList]);
-
+export const Sidebar = () => {
   const { open } = useModal();
   const { data: categories } = useCategories();
+
+  const totalPosts = useMemo(() => {
+    return categories?.reduce((total, category) => {
+      return total + category.posts;
+    }, 0);
+  }, [categories]);
 
   const handleOpen = () => {
     open(<SubmitPostForm categories={categories || []} />);
@@ -38,7 +32,7 @@ export const Sidebar = ({ categoriesList = defaultCategories }: Props) => {
           <Text size="md">All categories</Text>
           <Label>{totalPosts}</Label>
         </ListItem>
-        {categoriesList.map(category => (
+        {categories?.map(category => (
           <ListItem key={category.id}>
             <Text size="md">{category.name}</Text>
             <Label>{category.posts}</Label>
