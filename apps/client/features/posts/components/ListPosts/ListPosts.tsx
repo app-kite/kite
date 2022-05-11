@@ -1,13 +1,15 @@
-import React, { Fragment, useEffect, useRef } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 import { useInfiniteQuery } from 'react-query';
 import { Post } from '../Post';
 import { listPosts } from '../../api';
 import { useIntersection } from '../../hooks/useIntersection';
+import { useUpdateVote } from '../../../votes/hooks/useUpdateVote';
 
 const Loader: React.FunctionComponent = () => <div>Loading</div>;
 
 export const ListPosts = () => {
+  const updateVoteMutation = useUpdateVote();
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'posts',
     ({ pageParam = '' }) => {
@@ -37,7 +39,8 @@ export const ListPosts = () => {
                 title={post.title}
                 text={post.text}
                 category={post.category}
-                votes={381}
+                onVote={() => updateVoteMutation.mutate({ postId: post.id })}
+                votes={post.votes.length}
                 key={post.id}
               />
             ))}

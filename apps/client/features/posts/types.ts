@@ -6,10 +6,11 @@ type CategoryPayload = {
 };
 
 export type Post = {
-  id: string;
+  id: number;
   title: string;
   text: Descendant[];
   categoryId: number;
   authorId: number;
   category: CategoryPayload;
+  votes: string[];
 };

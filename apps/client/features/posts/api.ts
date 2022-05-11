@@ -4,8 +4,6 @@ import { Post } from './types';
 
 export type ListPostPayload = {
   nextId: number;
-  text: Descendant[];
-  categoryId: number;
   posts: Post[];
 };
 

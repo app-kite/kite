@@ -20,6 +20,7 @@ model User {
   accounts        Account[]
   sessions        Session[]
   posts           Post[]
+  votes           Vote[]
 }
 
 model Org {
@@ -44,6 +45,24 @@ model Post {
 
   category        Category    @relation(fields: [categoryId], references: [id])
   author          User        @relation(fields: [authorId], references: [id])
+  votes           VotesOnPosts[]
+}
+
+model Vote {
+  id              Int               @id @default(autoincrement())
+  authorId        Int
+  author          User              @relation(fields: [authorId], references: [id])
+  createdAt       DateTime          @default(now())
+  posts           VotesOnPosts[]
+}
+
+model VotesOnPosts {
+  postId          Int
+  post            Post            @relation(fields: [postId], references: [id])
+  voteId          Int
+  vote            Vote            @relation(fields: [voteId], references: [id], onDelete: Cascade)
+
+  @@id([postId, voteId])
 }
 
 model Account {

@@ -30,7 +30,7 @@ export const Post = ({
 
   return (
     <Root>
-      <Vote value={votes} onChange={onVote} isActivated={hasVoted} />
+      <Vote value={votes} onVote={onVote} hasVoted={hasVoted} />
       <Body>
         <Text size="md" bold>
           {title}
