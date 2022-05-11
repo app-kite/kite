@@ -32,7 +32,7 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
       },
       author: {
         connect: {
-          id: session.user.id,
+          id: Number(session.user.id),
         },
       },
     },
@@ -53,6 +53,7 @@ async function listPost(req: NextApiRequest, res: NextApiResponse) {
     take: limit,
     include: {
       category: true,
+      votes: true,
     },
   });
   res.json({

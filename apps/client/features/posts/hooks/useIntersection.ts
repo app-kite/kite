@@ -23,5 +23,5 @@ export const useIntersection = (options: IntersectionObserverInit = {}) => {
     };
   }, []);
 
-  return [isIntersecting, setElem];
+  return [isIntersecting, setElem] as const;
 };
