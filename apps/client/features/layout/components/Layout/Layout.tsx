@@ -4,17 +4,13 @@ import styled from 'styled-components';
 
 type Props = {
   children?: ReactNode;
-  leftContent?: ReactNode;
 };
 
-export const Layout = ({ children, leftContent }: Props) => {
+export const Layout = ({ children }: Props) => {
   return (
     <Root>
       <Header />
-      <Container>
-        <SideBar>{leftContent}</SideBar>
-        <Main>{children}</Main>
-      </Container>
+      <Container>{children}</Container>
     </Root>
   );
 };
@@ -24,13 +20,8 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const Main = styled.main`
-  width: 800px;
-`;
-
-const SideBar = styled.aside``;
-
 const Container = styled.div`
+  width: 800px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
