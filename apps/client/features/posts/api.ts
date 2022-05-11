@@ -7,7 +7,7 @@ export type ListPostPayload = {
   text: Descendant[];
   categoryId: number;
   posts: Post[];
-} & Post;
+};
 
 export type CreatePostPayload = {
   title: string;
