@@ -1,36 +1,27 @@
 import { useRef, useState, useEffect, MutableRefObject } from 'react';
 
-export function useIntersection(
-  ref: MutableRefObject<Element | null>,
-  options: IntersectionObserverInit = {},
-) {
-  const [element, setElement] = useState<Element | null>(null);
+export const useIntersection = (options: IntersectionObserverInit = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const observer = useRef<null | IntersectionObserver>(null);
-  const cleanOb = () => {
-    if (observer.current) {
-      observer.current.disconnect();
-    }
+  const elemRef = useRef(null) as MutableRefObject<any>;
+
+  const setElem = (elem: any) => {
+    elemRef.current = elem;
   };
 
   useEffect(() => {
-    setElement(ref.current);
-  }, [ref]);
+    if (!elemRef) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, options);
 
-  useEffect(() => {
-    if (!element) return;
-    cleanOb();
-    const ob = (observer.current = new IntersectionObserver(
-      ([entry]) => {
-        const isElementIntersecting = entry.isIntersecting;
-        setIsIntersecting(isElementIntersecting);
-      },
-      { ...options },
-    ));
-    ob.observe(element);
+    if (elemRef.current) {
+      observer.observe(elemRef.current);
+    }
+
     return () => {
-      cleanOb();
+      observer.unobserve(elemRef.current);
     };
-  }, [element, options]);
-  return isIntersecting;
-}
+  }, []);
+
+  return [isIntersecting, setElem];
+};
