@@ -24,7 +24,10 @@ const Container = styled.div`
   width: 800px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 25px auto 0;
   gap: 112px;
-  margin-top: 25px;
+`;
+
+Layout.Sidebar = styled.aside`
+  width: 200px;
 `;

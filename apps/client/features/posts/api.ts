@@ -20,3 +20,7 @@ export const createPost = (payload: CreatePostPayload) => {
 export const listPosts = (cursor: number) => {
   return api.url(`/api/posts?cursor=${cursor}`).get().json<ListPostPayload>();
 };
+
+export const getPost = (id: number) => {
+  return api.url(`/api/posts/${id}`).get().json<Post>();
+}
