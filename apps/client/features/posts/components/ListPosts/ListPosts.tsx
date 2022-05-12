@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
-import { useInfiniteQuery } from 'react-query';
+import {InfiniteData, useInfiniteQuery, useQueryClient} from 'react-query';
 import { Post } from '../Post';
-import { listPosts } from '../../api';
+import { Post as TPost } from '../../types';
+import { ListPostPayload, listPosts } from '../../api';
 import { useIntersection } from '../../hooks/useIntersection';
 import { useUpdateVote } from '../../../votes/hooks/useUpdateVote';
 
 const Loader: React.FunctionComponent = () => <div>Loading</div>;
 
 export const ListPosts = () => {
+  const queryClient = useQueryClient();
   const updateVoteMutation = useUpdateVote();
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'posts',
@@ -28,6 +30,25 @@ export const ListPosts = () => {
     }
   }, [isIntersecting]);
 
+  const handleSuccess = (data: TPost) => {
+    queryClient.setQueryData<InfiniteData<ListPostPayload> | undefined>(
+      'posts',
+      previousPosts => {
+        if (!previousPosts) {
+          return previousPosts;
+        }
+
+        return {
+          ...previousPosts,
+          pages: previousPosts.pages.map(page => ({
+            ...page,
+            posts: page.posts.map(post => (post.id === data.id ? data : post)),
+          })),
+        };
+      },
+    );
+  };
+
   return (
     <Root>
       {isFetching && <Loader />}
@@ -39,7 +60,12 @@ export const ListPosts = () => {
                 title={post.title}
                 text={post.text}
                 category={post.category}
-                onVote={() => updateVoteMutation.mutate({ postId: post.id })}
+                onVote={() =>
+                  updateVoteMutation.mutate(
+                    { postId: post.id },
+                    { onSuccess: handleSuccess },
+                  )
+                }
                 votes={post.votes.length}
                 key={post.id}
               />

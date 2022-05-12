@@ -51,20 +51,34 @@ async function updateVote(req: NextApiRequest, res: NextApiResponse) {
         posts: {
           every: {
             postId,
-          }
-        }
-      }
-    })
+          },
+        },
+      },
+    });
   }
 
   const post = await prisma.post.findUnique({
     where: {
-      id: postId
+      id: postId,
     },
     include: {
-      votes: true,
       category: true,
-    }
+      votes: {
+        include: {
+          vote: {
+            include: {
+              author: {
+                select: {
+                  id: true,
+                  image: true,
+                  name: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   res.status(200).json(post);
