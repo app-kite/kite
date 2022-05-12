@@ -1,19 +1,12 @@
-name: telegram message on Pull Request
-on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - closed
-    branches:
-      - main
+name: Telegram Notify
+on: [pull_request, issues]
 jobs:
   notify:
     name: Notify PR
     runs-on: ubuntu-latest
     steps:
       - name: PR Opened
-        if: github.event.action == 'opened'
+        if: github.event.action == 'opened' && github.event.issue.pull_request
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -26,7 +19,7 @@ jobs:
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
 
       - name: PR Reopened
-        if: github.event.action == 'reopened'
+        if: github.event.action == 'reopened' && github.event.issue.pull_request
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -38,10 +31,8 @@ jobs:
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
 
-
-
       - name: PR Merged
-        if: github.event.action == 'closed' && github.event.pull_request.merged
+        if: github.event.action == 'closed' && github.event.issue.pull_request && github.event.pull_request.merged
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -53,4 +44,16 @@ jobs:
 
             [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
 
+      - name: Issue created
+        if: github.event.action == 'opened' && !github.event.issue.pull_request
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *${{ github.event.sender.login }} opened an issue:*
+            ${{ github.event.issue.title }}
+
+            [#${{ github.event.issue.number }}](https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }})
 
