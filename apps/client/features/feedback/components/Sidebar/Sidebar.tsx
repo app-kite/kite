@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, ButtonVariant, Text, useModal } from '@kite/ui';
 import { SubmitPostForm } from '../../../posts/components/SubmitPostForm';
 import { Category } from '../../../categories/type';
+import { Layout } from '../../../layout/components/Layout';
 
 type Props = {
   categories: Category[];
@@ -22,7 +23,7 @@ export const Sidebar = ({ categories }: Props) => {
   };
 
   return (
-    <Root>
+    <Layout.Sidebar>
       <Header>
         <Button onClick={handleOpen} variant={ButtonVariant.DEFAULT}>
           Submit a post
@@ -41,11 +42,9 @@ export const Sidebar = ({ categories }: Props) => {
           </ListItem>
         ))}
       </List>
-    </Root>
+    </Layout.Sidebar>
   );
 };
-
-const Root = styled.aside``;
 
 const Header = styled.header`
   padding: 0 0 10px;

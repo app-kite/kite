@@ -25,7 +25,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 25px auto 0;
-  gap: 112px;
+  gap: 40px;
 `;
 
 Layout.Sidebar = styled.aside`
