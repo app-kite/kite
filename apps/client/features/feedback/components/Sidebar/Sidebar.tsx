@@ -1,17 +1,19 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonVariant, Text, useModal } from '@kite/ui';
-import { SubmitPostForm } from '../../../../features/posts/components/SubmitPostForm';
+import { SubmitPostForm } from '../../../posts/components/SubmitPostForm';
 import { Category } from '../../../categories/type';
-import { useCategories } from '../../../categories/hooks/getCategories';
 
-export const Sidebar = () => {
+type Props = {
+  categories: Category[];
+};
+
+export const Sidebar = ({ categories }: Props) => {
   const { open } = useModal();
-  const { data: categories } = useCategories();
 
   const totalPosts = useMemo(() => {
     return categories?.reduce((total, category) => {
-      return total + category.posts;
+      return total + (category.posts ?? 0);
     }, 0);
   }, [categories]);
 

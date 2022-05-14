@@ -9,7 +9,21 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function getCategories(req: NextApiRequest, res: NextApiResponse) {
-  const categories = await prisma.category.findMany();
+  const categories = await prisma.category.findMany({
+    include: {
+      _count: {
+        select: {
+          posts: true
+        }
+      }
+    }
+  });
 
-  res.status(200).json(categories);
+  res.status(200).json(categories.map(category => {
+    return {
+      id: category.id,
+      name: category.name,
+      posts: category._count.posts,
+    }
+  }));
 }

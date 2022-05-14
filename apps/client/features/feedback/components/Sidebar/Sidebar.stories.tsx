@@ -16,7 +16,7 @@ export const Default = PlaygroundContent.bind({});
 
 Default.args = {
   categories: [
-    { id: '1', name: 'Feature Request', posts: 103 },
-    { id: '2', name: 'Bug Report', posts: 71 },
+    { id: 1, name: 'Feature Request', posts: 103 },
+    { id: 2, name: 'Bug Report', posts: 71 },
   ]
 }
