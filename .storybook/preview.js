@@ -1,6 +1,7 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { light, ThemeProvider } from '@kite/theme';
+import { ModalProvider } from '../packages/ui';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -13,5 +14,7 @@ export const parameters = {
 };
 
 addDecorator(storyFn => (
-  <ThemeProvider theme={light}>{storyFn()}</ThemeProvider>
+  <ThemeProvider theme={light}>
+    <ModalProvider>{storyFn()}</ModalProvider>
+  </ThemeProvider>
 ));

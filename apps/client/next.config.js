@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@kite/ui']);
+const withTM = require('next-transpile-modules')(['@kite/ui', '@kite/theme']);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

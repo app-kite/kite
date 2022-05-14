@@ -1,9 +1,11 @@
 import '../styles/globals.css';
+import { useState } from 'react';
 import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { useState } from 'react';
-import { ModalProvider } from '../../../packages/ui';
+import { ThemeProvider } from 'styled-components';
+import { ModalProvider } from '@kite/ui';
+import { light } from '@kite/theme';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -12,9 +14,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <ModalProvider>
-            <Component {...pageProps} />
-          </ModalProvider>
+          <ThemeProvider theme={light}>
+            <ModalProvider>
+              <Component {...pageProps} />
+            </ModalProvider>
+          </ThemeProvider>
         </Hydrate>
       </QueryClientProvider>
     </SessionProvider>
