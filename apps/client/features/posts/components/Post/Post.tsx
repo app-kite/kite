@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { Descendant, serialize, Text, Vote } from '@kite/ui';
 import { Category } from '../../../categories/type';
 
 type Props = {
+  id: number;
   title: string;
   text?: Descendant[];
   votes: number;
@@ -13,6 +15,7 @@ type Props = {
 };
 
 export const Post = ({
+  id,
   title,
   text = [],
   votes = 0,
@@ -32,9 +35,13 @@ export const Post = ({
     <Root>
       <Vote value={votes} onVote={onVote} hasVoted={hasVoted} />
       <Body>
-        <Text size="md" bold>
-          {title}
-        </Text>
+        <Link href={`/posts/${id}`}>
+          <a>
+            <Text size="md" bold>
+              {title}
+            </Text>
+          </a>
+        </Link>
         <Text size="md">{serializedText}</Text>
         <Footer>
           <Tag>

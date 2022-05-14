@@ -57,6 +57,7 @@ export const ListPosts = () => {
           <Fragment key={page.nextId ?? 'lastPage'}>
             {page.posts.map(post => (
               <Post
+                id={post.id}
                 title={post.title}
                 text={post.text}
                 category={post.category}
