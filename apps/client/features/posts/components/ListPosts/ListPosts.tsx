@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
-import {InfiniteData, useInfiniteQuery, useQueryClient} from 'react-query';
+import { InfiniteData, useInfiniteQuery, useQueryClient } from 'react-query';
 import { Post } from '../Post';
 import { Post as TPost } from '../../types';
 import { ListPostPayload, listPosts } from '../../api';
