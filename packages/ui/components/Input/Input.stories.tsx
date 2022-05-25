@@ -12,7 +12,7 @@ const PlaygroundContent: ComponentStory<typeof Input> = args => {
   const [value, setValue] = useState('');
 
   return (
-    <Input value={value} onChange={value => setValue(value)} />
+    <Input value={value} onChange={ev => setValue(ev.target.value)} />
   )
 }
 

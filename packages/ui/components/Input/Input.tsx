@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { InputWrapper } from '../InputWrapper';
 
 type Props = {
-  value: string;
-  onChange(value: string): void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
@@ -14,13 +12,9 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
     ...rest
   } = props;
 
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    onChange(ev.target.value);
-  }
-
   return (
     <InputWrapper>
-      <InputComponent {...rest} ref={ref} value={value} onChange={handleChange} />
+      <InputComponent {...rest} ref={ref} />
     </InputWrapper>
   );
 });
