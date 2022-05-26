@@ -1,22 +1,23 @@
-import { SettingsLayout } from '../../features/settings/components/SettingsLayout';
+import {SettingsLayout} from '../../features/settings/components/SettingsLayout';
 import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
-import { useSettings } from '../../features/settings/hooks/useSettings';
-import { useUpdateSettings } from '../../features/settings/hooks/useUpdateSettings';
-import { dehydrate, QueryClient } from 'react-query';
-import { getSettings } from '../../features/settings/api';
+import {useForm} from 'react-hook-form';
+import {useSettings} from '../../features/settings/hooks/useSettings';
+import {useUpdateSettings} from '../../features/settings/hooks/useUpdateSettings';
+import {dehydrate, QueryClient} from 'react-query';
+import {getSettings} from '../../features/settings/api';
+import {Button, ButtonVariant, Form as FormInitial, Input} from '@kite/ui';
 
 type FormData = {
   name: string;
 };
 
-const SettingsMain = () => {
-  const { data } = useSettings();
+const SettingsPage = () => {
+  const { data: settings } = useSettings();
   const updateSettingsMutation = useUpdateSettings();
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: data?.name,
+      name: settings?.name,
     },
   });
 
@@ -26,17 +27,15 @@ const SettingsMain = () => {
 
   return (
     <SettingsLayout>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Fieldset>
-          <label>
-            <div>Organization name:</div>
-            <input {...form.register('name')} />
-          </label>
-        </Fieldset>
-        <Fieldset>
-          <button>Save</button>
-        </Fieldset>
-      </form>
+      <Form onSubmit={form.handleSubmit(onSubmit)}>
+        <Form.FormItem>
+          <Form.Label>Organization name:</Form.Label>
+          <Input {...form.register('name')} />
+        </Form.FormItem>
+        <Form.FormItem>
+          <Button variant={ButtonVariant.DEFAULT}>Save</Button>
+        </Form.FormItem>
+      </Form>
     </SettingsLayout>
   );
 };
@@ -53,8 +52,8 @@ export async function getServerSideProps() {
   };
 }
 
-const Fieldset = styled.fieldset`
-  border: none;
-`;
+export default SettingsPage;
 
-export default SettingsMain;
+const Form = styled(FormInitial)`
+  width: 300px;
+`;

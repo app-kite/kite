@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Layout } from '../../../layout/components/Layout';
 import { Sidebar } from '../Sidebar';
-import {useCategories} from '../../../categories/hooks/getCategories';
+import { useCategories } from '../../../categories/hooks/useCategories';
 
 type Props = {
   children: ReactNode;

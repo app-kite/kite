@@ -14,6 +14,10 @@ Form.FormItem = styled.label`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  
+  & + & {
+    margin-top: 10px;
+  }
 `;
 
 type LabelProps = {
@@ -23,7 +27,8 @@ type LabelProps = {
 Form.Label = ({ children }: LabelProps) => {
   return (
     <div>
-      <Text size="md">{children}</Text>
+      <Text size="md" bold>{children}</Text>
     </div>
   );
 };
+
