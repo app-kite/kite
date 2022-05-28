@@ -18,7 +18,7 @@ Default.args = {
   votes: 381,
   title: 'Add subtasks',
   category: {
-    id: '1',
+    id: 1,
     name: 'Feature request',
   },
   text: [
