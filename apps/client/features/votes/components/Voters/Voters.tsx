@@ -24,9 +24,13 @@ export const Voters = ({ voters }: Props) => {
   });
 
   let finalTextToDisplay = '';
-  totalVoters === 0
-    ? (finalTextToDisplay = 'No voters yet')
-    : (finalTextToDisplay = `${totalVoters} voters`);
+  if (totalVoters === 0) {
+    finalTextToDisplay = 'No voters yet';
+  } else if (totalVoters === 1) {
+    finalTextToDisplay = `${totalVoters} voter`;
+  } else {
+    finalTextToDisplay = `${totalVoters} voters`;
+  }
 
   return (
     <Root>
