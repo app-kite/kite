@@ -9,11 +9,12 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const {
     value,
     onChange,
+    className,
     ...rest
   } = props;
 
   return (
-    <InputWrapper>
+    <InputWrapper className={className}>
       <InputComponent {...rest} ref={ref} />
     </InputWrapper>
   );

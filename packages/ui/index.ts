@@ -1,5 +1,6 @@
 export * from './components/Button';
 export * from './components/Editor';
+export * from './components/Form';
 export * from './components/Input';
 export * from './components/Modal';
 export * from './components/Text';

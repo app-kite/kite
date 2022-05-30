@@ -41,7 +41,7 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
                 transform: style.transform,
               }}
             >
-              <CloseButton onClick={onClose} />
+              <CloseButton onClick={onClose} width={24} height={24} />
               {children}
             </AnimatedWindow>
           </Root>

@@ -10,6 +10,7 @@ import { Modal } from './Modal';
 
 type ModalContextValue = {
   open(content: React.ReactNode): void;
+  close(): void;
 }
 
 const ModalContext = createContext<ModalContextValue | undefined>(undefined);
