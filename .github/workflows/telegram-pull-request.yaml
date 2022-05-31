@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PR Opened
-        if: github.event.action == 'opened' && github.event.issue.pull_request
+        if: github.event.action == 'opened' && github.event_name == 'pull_request_target'
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
