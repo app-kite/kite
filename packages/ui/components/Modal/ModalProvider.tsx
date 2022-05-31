@@ -8,7 +8,12 @@ import React, {
 } from 'react';
 import { Modal } from './Modal';
 
-const ModalContext = createContext(undefined);
+type ModalContextValue = {
+  open(content: React.ReactNode): void;
+  close(): void;
+}
+
+const ModalContext = createContext<ModalContextValue | undefined>(undefined);
 
 type Props = {
   children: React.ReactNode;

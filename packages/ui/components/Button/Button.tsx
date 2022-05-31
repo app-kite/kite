@@ -16,6 +16,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
 }) => <Root {...rest}>{children}</Root>;
 
 const Root = styled.button<ButtonProps>`
+  width: fit-content;
   background: ${p => {
     switch (p.variant) {
       case ButtonVariant.DEFAULT:

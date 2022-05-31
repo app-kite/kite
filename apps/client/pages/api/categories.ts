@@ -5,6 +5,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       return getCategories(req, res);
+    case 'POST':
+      return createCategory(req, res);
   }
 }
 
@@ -26,4 +28,16 @@ async function getCategories(req: NextApiRequest, res: NextApiResponse) {
       posts: category._count.posts,
     }
   }));
+}
+
+async function createCategory(req: NextApiRequest, res: NextApiResponse) {
+  const { name } = req.body;
+
+  const category = await prisma.category.create({
+    data: {
+      name,
+    }
+  });
+
+  res.status(201).json(category);
 }

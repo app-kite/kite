@@ -31,3 +31,7 @@ const Container = styled.div`
 Layout.Sidebar = styled.aside`
   width: 200px;
 `;
+
+Layout.Content = styled.div`
+  flex-grow: 1;
+`;

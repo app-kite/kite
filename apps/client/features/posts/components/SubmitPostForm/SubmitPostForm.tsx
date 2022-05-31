@@ -9,6 +9,7 @@ import {
   Editor,
   Modal,
   Text,
+  Input,
 } from '@kite/ui';
 import { Category } from '../../../categories/type';
 import { CreatePostPayload } from '../../api';
@@ -43,11 +44,11 @@ export const SubmitPostForm = ({ categories }: Props) => {
         <Modal.Header>Submit a post</Modal.Header>
         <Content>
           <Fieldset>
-            <Text size="lg">Title</Text>
-            <input {...form.register('title')} />
+            <Text size="md" bold>Title</Text>
+            <Input {...form.register('title')} />
           </Fieldset>
           <Fieldset>
-            <Text size="lg">Text</Text>
+            <Text size="md" bold>Text</Text>
             <Controller
               name="text"
               control={form.control}
