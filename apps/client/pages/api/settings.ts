@@ -11,7 +11,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function getSettings(req: NextApiRequest, res: NextApiResponse) {
-  const org = await prisma.org.findFirst();
+  const org = await prisma.org.findFirst({
+    where: {
+      id: 1,
+    }
+  });
 
   res.status(200).json(org);
 }
