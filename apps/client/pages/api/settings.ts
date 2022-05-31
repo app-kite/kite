@@ -21,14 +21,14 @@ async function updateSettings(req: NextApiRequest, res: NextApiResponse) {
 
   const result = await prisma.org.upsert({
     create: {
-      id: 'main',
+      id: 1,
       name,
     },
     update: {
       name,
     },
     where: {
-      id: 'main',
+      id: 1,
     },
   });
 
