@@ -1,11 +1,11 @@
-import {SettingsLayout} from '../../features/settings/components/SettingsLayout';
+import { SettingsLayout } from '../../features/settings/components/SettingsLayout';
 import styled from 'styled-components';
-import {useForm} from 'react-hook-form';
-import {useSettings} from '../../features/settings/hooks/useSettings';
-import {useUpdateSettings} from '../../features/settings/hooks/useUpdateSettings';
-import {dehydrate, QueryClient} from 'react-query';
-import {getSettings} from '../../features/settings/api';
-import {Button, ButtonVariant, Form as FormInitial, Input} from '@kite/ui';
+import { useForm } from 'react-hook-form';
+import { useSettings } from '../../features/settings/hooks/useSettings';
+import { useUpdateSettings } from '../../features/settings/hooks/useUpdateSettings';
+import { dehydrate, QueryClient } from 'react-query';
+import { getSettings } from '../../features/settings/api';
+import { Button, ButtonVariant, Form as FormInitial, Input } from '@kite/ui';
 
 type FormData = {
   name: string;

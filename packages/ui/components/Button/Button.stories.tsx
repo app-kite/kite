@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentProps} from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button, ButtonVariant } from './Button';
@@ -16,7 +16,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const PlaygroundContent: ComponentStory<typeof Button> = (
-  args: JSX.IntrinsicAttributes & React.ButtonHTMLAttributes<HTMLButtonElement>,
+  args: JSX.IntrinsicAttributes & ComponentProps<typeof Button>,
 ) => {
   return <Button {...args} />;
 };

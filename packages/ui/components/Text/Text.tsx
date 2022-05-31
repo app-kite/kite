@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  size: 'sm' | 'md' | 'lg';
+  children: ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+  muted?: boolean;
   bold?: boolean;
 };
 
 /**
  * Component for typography
  */
-export const Text = ({ children, ...props }) => {
-  return <Root {...props}>{children}</Root>;
+export const Text = ({ children, size = 'md', ...props }: Props) => {
+  return (
+    <Root size={size} {...props}>
+      {children}
+    </Root>
+  );
 };
 
 const Root = styled.span<Props>`
@@ -23,6 +29,13 @@ const Root = styled.span<Props>`
         return '14px';
       case 'lg':
         return '16px';
+    }
+  }};
+  color: ${p => {
+    if (p.muted) {
+      return '#aaa';
+    } else {
+      return '#000';
     }
   }};
 `;
