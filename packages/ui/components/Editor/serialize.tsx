@@ -7,7 +7,7 @@ export const serialize = node => {
     return node.text;
   }
 
-  const children = node.children.map(serialize).join('');
+  const children = node.children.map(serialize);
 
   switch (node.type) {
     case 'paragraph':
