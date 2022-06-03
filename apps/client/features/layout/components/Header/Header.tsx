@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Button, ButtonVariant, Text } from '@kite/ui';
 import MenuIcon from '@kite/ui/assets/icons/menu.svg';
 
+export const HEADER_HEIGHT = 68;
+
 export const Header = () => {
   const { data: session } = useSession();
 
@@ -42,7 +44,7 @@ export const Header = () => {
 const Root = styled.header`
   width: 100%;
   box-sizing: border-box;
-  height: 68px;
+  height: ${HEADER_HEIGHT}px;
   padding: 10px 45px 10px 40px;
   display: flex;
   justify-content: space-between;
