@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PR Opened
-        if: github.event.action == 'opened' && github.event_name == 'pull_request_target'
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -16,10 +16,10 @@ jobs:
             *${{ github.actor }} opened a PR:*
             ${{ github.event.pull_request.title }}
 
-            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+            [#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})
 
       - name: PR Reopened
-        if: github.event.action == 'reopened' && github.event.issue.pull_request
+        if: github.event_name == 'pull_request' && github.event.action == 'reopened'
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -29,10 +29,10 @@ jobs:
             *${{ github.event.sender.login }} reopened a PR:*
             ${{ github.event.pull_request.title }}
 
-            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+            [#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})
 
       - name: PR Merged
-        if: github.event.action == 'closed' && github.event.issue.pull_request && github.event.pull_request.merged
+        if: ${{ github.event.action == 'closed' && github.event_name == 'pull_request' && github.event.pull_request.merged }}
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -42,10 +42,10 @@ jobs:
             *${{ github.event.sender.login }} merged a PR:*
             ${{ github.event.pull_request.title }}
 
-            [#${{ github.event.pull_request.number }}](https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }})
+            [#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})
 
       - name: Issue created
-        if: github.event.action == 'opened' && !github.event.issue.pull_request
+        if: github.event.action == 'opened' && github.event_name == 'issues'
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -55,5 +55,4 @@ jobs:
             *${{ github.event.sender.login }} opened an issue:*
             ${{ github.event.issue.title }}
 
-            [#${{ github.event.issue.number }}](https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }})
-
+            [#${{ github.event.issue.number }}](${{ github.event.issue.html_url }})
