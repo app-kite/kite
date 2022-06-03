@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Header } from '../Header';
+import { Header, HEADER_HEIGHT } from '../Header';
 import styled from 'styled-components';
 
 type Props = {
@@ -24,7 +24,7 @@ const Container = styled.div`
   width: 800px;
   display: flex;
   flex-wrap: wrap;
-  margin: 25px auto 0;
+  margin: ${HEADER_HEIGHT + 25}px auto 0;
   gap: 40px;
 `;
 

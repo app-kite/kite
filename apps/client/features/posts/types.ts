@@ -12,5 +12,15 @@ export type Post = {
   categoryId: number;
   authorId: number;
   category: CategoryPayload;
-  votes: string[];
+  createdAt: string;
+  updatedAt: string;
+  votes: Array<{
+    vote: {
+      author: {
+        id: number;
+        image: string;
+        name: string;
+      };
+    };
+  }>;
 };

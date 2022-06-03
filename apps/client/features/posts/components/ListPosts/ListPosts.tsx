@@ -81,6 +81,7 @@ export const ListPosts = () => {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 `;
 
 const Trigger = styled.div`

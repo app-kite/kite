@@ -57,6 +57,11 @@ const Root = styled.article`
   display: flex;
   gap: 10px;
   margin-bottom: 40px;
+  background-color: #fff;
+  flex-grow: 1;
+  border: 1px solid #A9C8DF;
+  padding: 10px;
+  border-radius: 4px;
 `;
 
 const Body = styled.div`

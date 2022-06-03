@@ -46,6 +46,9 @@ model Post {
   category        Category    @relation(fields: [categoryId], references: [id])
   author          User        @relation(fields: [authorId], references: [id])
   votes           VotesOnPosts[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
 }
 
 model Vote {
