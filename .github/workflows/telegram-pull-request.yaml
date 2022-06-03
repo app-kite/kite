@@ -32,7 +32,7 @@ jobs:
             [#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }})
 
       - name: PR Merged
-        if: ${{ github.event.action == 'closed' && github.event_name == 'pull_request' && github.event.pull_request.merged }}
+        if: github.event.action == 'closed' && github.event_name == 'pull_request' && github.event.pull_request.merged
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }}
