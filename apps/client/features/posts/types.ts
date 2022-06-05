@@ -11,6 +11,7 @@ export type Post = {
   text: Descendant[];
   categoryId: number;
   authorId: number;
+  status: PostStatus;
   category: CategoryPayload;
   createdAt: string;
   updatedAt: string;
@@ -24,3 +25,11 @@ export type Post = {
     };
   }>;
 };
+
+enum PostStatus {
+  IN_REVIEW = 'IN_REVIEW',
+  PLANNED = 'PLANNED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
+  CLOSED = 'CLOSED',
+}

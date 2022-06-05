@@ -42,6 +42,7 @@ model Post {
   text            Json?
   categoryId      Int
   authorId        Int
+  status          PostStatus  @default(IN_REVIEW)
 
   category        Category    @relation(fields: [categoryId], references: [id])
   author          User        @relation(fields: [authorId], references: [id])
@@ -49,6 +50,14 @@ model Post {
 
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @default(now())
+}
+
+enum PostStatus {
+  IN_REVIEW
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  CLOSED
 }
 
 model Vote {
