@@ -57,7 +57,7 @@ enum PostStatus {
   PLANNED
   IN_PROGRESS
   COMPLETED
-  CLOSED
+  CANCELLED
 }
 
 model Vote {

@@ -11,7 +11,7 @@ export const STATUSES = {
   COMPLETED: {
     title: 'Completed',
   },
-  CLOSED: {
-    title: 'Closed',
+  CANCELLED: {
+    title: 'Cancelled',
   },
 };
