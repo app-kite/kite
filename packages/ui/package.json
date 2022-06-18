@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@kite/theme": "workspace:*",
+    "@rmr/use-dropdown": "^0.8.15",
     "react": "18.1.0",
+    "react-dom": "18.1.0",
     "react-spring": "^9.4.5",
     "slate": "^0.78.0",
     "slate-history": "^0.66.0",
