@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
   ButtonVariant,
+  Select,
   defaultValue,
   Editor,
   Input,
@@ -14,7 +15,9 @@ import { Category } from '../../../categories/type';
 import { CreatePostPayload } from '../../api';
 import { useCreatePost } from '../../hooks/useCreatePost';
 
-type FormValues = CreatePostPayload;
+type FormValues = Omit<CreatePostPayload, 'categoryId'> & {
+  category: Category;
+};
 
 type Props = {
   categories: Category[];
@@ -27,13 +30,14 @@ export const SubmitPostForm = ({ categories }: Props) => {
     defaultValues: {
       title: '',
       text: defaultValue,
+      category: categories[0],
     },
   }) as any; // https://github.com/react-hook-form/react-hook-form/issues/4055
 
   const onSubmit = (values: FormValues) => {
     createPostMutation.mutateAsync({
       ...values,
-      categoryId: Number(values.categoryId),
+      categoryId: Number(values.category.id),
     });
   };
 
@@ -63,24 +67,29 @@ export const SubmitPostForm = ({ categories }: Props) => {
               )}
             />
           </Fieldset>
-          <Footer>
-            <div>
-              <select {...form.register('categoryId')}>
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <Button type="submit" variant={ButtonVariant.PRIMARY}>
-                Submit
-              </Button>
-            </div>
-          </Footer>
         </Content>
+        <Footer>
+          <SelectWrapper>
+            <Controller
+              name="category"
+              control={form.control}
+              render={props => (
+                <Select<Category>
+                  value={props.field.value}
+                  onSelect={props.field.onChange}
+                  items={categories}
+                  getKey={item => item.id}
+                  getLabel={item => item.name}
+                />
+              )}
+            />
+          </SelectWrapper>
+          <div>
+            <Button type="submit" variant={ButtonVariant.PRIMARY}>
+              Submit
+            </Button>
+          </div>
+        </Footer>
       </form>
     </>
   );
@@ -93,6 +102,8 @@ const Content = styled(Modal.Content)`
 `;
 
 const Fieldset = styled.fieldset`
+  padding: 0;
+  margin: 0;
   border: none;
   display: flex;
   flex-direction: column;
@@ -101,5 +112,10 @@ const Fieldset = styled.fieldset`
 
 const Footer = styled(Modal.Footer)`
   display: flex;
-  justify-content: space-between; ;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SelectWrapper = styled.div`
+  width: 150px;
 `;

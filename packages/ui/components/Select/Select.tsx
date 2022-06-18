@@ -31,8 +31,9 @@ export const Select = <T extends unknown>(props: Props<T>) => {
 
   return (
     <Root {...getWrapperProps()}>
-      <Control onClick={() => setOpen(true)}>
+      <Control onClick={() => setOpen(true)} type="button">
         {value ? getLabel(value) : <span>Select</span>}
+        
       </Control>
       {isOpen &&
         !isSSR &&
@@ -54,7 +55,9 @@ export const Select = <T extends unknown>(props: Props<T>) => {
   );
 };
 
-const Root = styled.div``;
+const Root = styled.div`
+  width: 100%;
+`;
 
 const Control = styled.button`
   width: 100%;
@@ -71,6 +74,8 @@ const List = styled.ul`
   padding: 0;
   border: 1px solid #ccc;
   list-style: none;
+  z-index: 1;
+  background-color: #fff;
 `;
 
 const ListItem = styled.li<{ highlighted: boolean }>`

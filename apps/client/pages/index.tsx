@@ -5,13 +5,6 @@ import { ListPosts } from '../features/posts/components/ListPosts';
 import { FeedbackLayout } from '../features/feedback/components/FeedbackLayout';
 
 const Home: NextPage = () => {
-  const { data: categories } = useCategories();
-  const [isActivated, setActivated] = useState(false);
-
-  const handleClick = (isActivated: boolean) => {
-    setActivated(isActivated);
-  };
-
   return (
     <FeedbackLayout>
       <ListPosts />
