@@ -1,17 +1,24 @@
-export const STATUSES = {
-  IN_REVIEW: {
+import {PostStatus} from './types';
+
+export const STATUSES_MAP = {
+  [PostStatus.IN_REVIEW]: {
     title: 'In review',
   },
-  PLANNED: {
+  [PostStatus.PLANNED]: {
     title: 'Planned',
   },
-  IN_PROGRESS: {
+  [PostStatus.IN_PROGRESS]: {
     title: 'In progress',
   },
-  COMPLETED: {
+  [PostStatus.COMPLETED]: {
     title: 'Completed',
   },
-  CANCELLED: {
+  [PostStatus.CANCELLED]: {
     title: 'Cancelled',
   },
 };
+
+export const STATUSES_LIST = Object.keys(STATUSES_MAP).map(status => ({
+  value: status,
+  label: STATUSES_MAP[status as PostStatus].title,
+}));

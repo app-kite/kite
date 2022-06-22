@@ -6,6 +6,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       return getPost(req, res);
+    case 'PATCH':
+      return updatePost(req, res);
   }
 }
 
@@ -45,4 +47,27 @@ async function getPost(req: NextApiRequest, res: NextApiResponse) {
     ...post,
     isAuthor: post.authorId === Number(session?.user?.id),
   });
+}
+
+async function updatePost(req: NextApiRequest, res: NextApiResponse) {
+  const { postId } = req.query;
+
+  const { status } = req.body;
+
+  await prisma.post.updateMany({
+    where: {
+      id: Number(postId),
+    },
+    data: {
+      status,
+    },
+  });
+
+  const post = await prisma.post.findFirst({
+    where: {
+      id: Number(postId),
+    }
+  });
+
+  return res.status(200).json(post);
 }

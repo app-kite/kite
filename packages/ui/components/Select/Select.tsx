@@ -7,7 +7,7 @@ import ChevronDown from '../../assets/icons/chevron-down.svg';
 import ChevronUp from '../../assets/icons/chevron-up.svg';
 
 type Props<T> = {
-  value: T;
+  value: T | null;
   onSelect(value: T): void;
   items: T[];
   getLabel(item: T): ReactNode;
