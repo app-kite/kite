@@ -16,13 +16,13 @@ export const Vote = ({ value, onVote, hasVoted }: Props) => {
 
   return (
     <Root onClick={handleClick} isActivated={hasVoted}>
-      <ChevronUpIcon />
+      <ChevronUpIcon width={20} height={20} />
       <Text size="sm">{value}</Text>
     </Root>
   );
 };
 
-const Root = styled.div`
+const Root = styled.div<{isActivated: boolean}>`
   display: inline-flex;
   flex-direction: column;
   width: 38px;

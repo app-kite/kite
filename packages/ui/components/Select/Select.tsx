@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { createPortal } from 'react-dom';
 import { useDropdown } from '@rmr/use-dropdown';
 import { Text } from '../Text';
+import ChevronDown from '../../assets/icons/chevron-down.svg';
+import ChevronUp from '../../assets/icons/chevron-up.svg';
 
 type Props<T> = {
   value: T;
@@ -32,8 +34,8 @@ export const Select = <T extends unknown>(props: Props<T>) => {
   return (
     <Root {...getWrapperProps()}>
       <Control onClick={() => setOpen(true)} type="button">
-        {value ? getLabel(value) : <span>Select</span>}
-        
+        <Label>{value ? getLabel(value) : <span>Select</span>}</Label>
+        {isOpen ? <ChevronUp width={16} height={16} /> : <ChevronDown />}
       </Control>
       {isOpen &&
         !isSSR &&
@@ -60,6 +62,7 @@ const Root = styled.div`
 `;
 
 const Control = styled.button`
+  display: flex;
   width: 100%;
   border: 1px solid #d8d8d8;
   padding: 4px 8px;
@@ -67,6 +70,10 @@ const Control = styled.button`
   background-color: #fff;
   cursor: pointer;
   text-align: left;
+`;
+
+const Label = styled.div`
+  flex-grow: 1;;
 `;
 
 const List = styled.ul`
