@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import {Layout} from '../../../layout/components/Layout';
 import {Button, ButtonVariant} from '@kite/ui';
-import {Voters} from '../../../votes/components/Voters';
 
 type Props = {
   children?: ReactNode;

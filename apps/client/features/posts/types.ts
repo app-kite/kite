@@ -26,7 +26,7 @@ export type Post = {
   }>;
 };
 
-enum PostStatus {
+export enum PostStatus {
   IN_REVIEW = 'IN_REVIEW',
   PLANNED = 'PLANNED',
   IN_PROGRESS = 'IN_PROGRESS',
